@@ -123,3 +123,15 @@
 ```bash
 npm init -y
 ```
+
+## backend folder
+```bash
+cd backend
+npm init -y
+npm install express cors dotenv
+```
+
+Raha te handefa an le server dia:
+```bash
+npm start
+```
