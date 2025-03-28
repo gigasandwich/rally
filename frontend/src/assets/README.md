@@ -1,0 +1,1 @@
+Sary sy zavatra static ohatran'izany no alatsaka ato
