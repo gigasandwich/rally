@@ -1,19 +1,22 @@
 const sql = require('msnodesqlv8');
+const path = require('path');
 
-const connectionString = 'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=../database/rally.accdb;';
+let DBQ = path.join(__dirname, '../../database/rally-2007.accdb');
+const connectionString = `Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=${DBQ};`;
 
 const getVoitures = (callback) => {
-  const query = 'SELECT * FROM Voiture';
-  sql.query(connectionString, query, (err, rows) => {
-    if (err) {
-      console.error('Error fetching voitures:', err);
-      callback(err, null);
-    } else {
-      callback(null, rows);
-    }
-  });
+    console.log(`Connection string: ${connectionString}`);
+    const query = 'SELECT * FROM voiture';
+    sql.query(connectionString, query, (err, rows) => {
+        if (err) {
+            console.error('Error fetching voitures:', err);
+            callback(err, null);
+        } else {
+            callback(null, rows);
+        }
+    });
 };
 
 module.exports = {
-  getVoitures
+    getVoitures
 };

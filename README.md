@@ -144,3 +144,6 @@ cd frontend
 npm install
 npm install --save-dev vite
 ```
+
+## Access configuration
+Mila miinstall [driver] (https://www.microsoft.com/en-us/download/details.aspx?id=54920)
