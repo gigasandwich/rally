@@ -1,6 +1,6 @@
 # How to run
 - Driver an le access ihany no mila telechargena en dehors an'i node JS (ankotran zay efa dispo anatin le node_modules daholo) 
-    - [driver] (https://www.microsoft.com/en-us/download/details.aspx?id=54920)
+    - [driver](https://www.microsoft.com/en-us/download/details.aspx?id=54920)
 
 - Mandefa terminal, `tout sauf powershell` (git bash, cmd, ...)
 
