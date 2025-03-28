@@ -2,14 +2,12 @@ const sql = require('msnodesqlv8');
 const dsn = require('./dsn');
 const path = require('path');
 
-// const connectionString = dsn.getDsn();
+const connection_string = dsn.getDsn();
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
 function _queryDatabase_(query, parameters = []) {
     return new Promise((resolve, reject) => {
-        let DBQ = path.join(__dirname, '../../database/rally-2007.accdb');
-        const connection_string = `Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=${DBQ};`;
         sql.query(connection_string, query, parameters, (err, rows) => {
             if (err) {
                 return reject(err);
