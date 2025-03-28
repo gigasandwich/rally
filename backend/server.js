@@ -1,10 +1,7 @@
-const express = require('express');
+require('dotenv').config();
+const app = require('./index');
 
-const app = express();
-app.use(express.json()); // Miparse automatique ny requests JSON
-
-app.get('/', (req, res) => {
-    res.send('Hello from backend');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
-
-module.exports = app;  // Exportena ilay app @zay afaka ampiasaina @ partie hafa an le application web
