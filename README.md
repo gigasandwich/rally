@@ -52,7 +52,7 @@
 - Misafidy ny temps de recharge (ilay any @ base), misafidy temps debut
 
 ### Back-end
-<!-- Yvan -->
+` Yvan `
 - Creation base:
 ```SQL
     - Voiture
@@ -72,16 +72,16 @@
 ``` 
 
 ### Fonctionalites
-<!-- Japon -->
+`Japon`
 - misafidyVoiture()
     - manao getAll
 
-<!-- Steeve - Poyz -->
+`Steeve - Poyz`
 - insertEvenement(): mikitia control, dia manampy ligne any @ table Evenement
     - calculGamma(keyboard_event)
 
 #### Contour
-<!-- Bocdom - Japon -->
+`Bocdom - Japon`
 - getEtatFinal()
 
 - getVitesse(etat_final): vitesse
@@ -92,12 +92,12 @@
     - appliquena ny equation de la vitesse (v=gamma * t + v0) 
     - or gamma efa ananana, v0 koa, ilay t efa azo, donc azo le
 
-<!-- Bocdom - Yvan -->
+`Bocdom - Yvan`
 - distanceParcourue(t) (a afficher)
     - sommeDistanceParcourue avant temps t: x= 1/2(gamma)*t^2 + vo*t + xo
 
 #### Essence (L/s)
-<!-- Poyz - Steeve -->
+`Poyz - Steeve`
 - Mihena jauge d'essence:
     - CONDITION:
         - commande d'acceleration no voapototra
@@ -108,14 +108,14 @@
         - reservoir = reservoir - consommation_essence * pourcentage d'acceleration * t
 
 ### Derniere priorites
-<!-- Bocdom - Yvan - Japon -->
+` Bocdom - Yvan - Japon `
 - replay(event):
     - Misafidy t1 a t2 (fenetre hafa)
-<!-- Poyz -->
+` Poyz `
 - cheadCode(fonctionalite) RESET
-<!-- Steeve -->
+` Steeve `
 - CRUD voiture
-<!-- Yvan -->
+` Yvan `
 - Accelerateur - Frein
 
 # Project structure (note fotsiny)
