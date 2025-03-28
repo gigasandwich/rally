@@ -1,0 +1,20 @@
+{
+  "name": "rally",
+  "version": "1.0.0",
+  "description": "- Mamoka ny distance totale parcourue a l'instant t ana voiture",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigasandwich/rally.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gigasandwich/rally/issues"
+  },
+  "homepage": "https://github.com/gigasandwich/rally#readme"
+}

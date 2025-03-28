@@ -54,6 +54,7 @@
 ### Back-end
 <!-- Yvan -->
 - Creation base:
+```SQL
     - Voiture
         - id INT PRIMARY KEY
         - nom VARCHAR(100)
@@ -68,7 +69,7 @@
         - vitesse_initiale DECIMAL
         - gamma DECIMAL (acceleration, afaka positif afaka negatif)
         - temps_debut DATETIME
-    
+``` 
 
 ### Fonctionalites
 <!-- Japon -->
@@ -116,3 +117,9 @@
 - CRUD voiture
 <!-- Yvan -->
 - Accelerateur - Frein
+
+# Project structure (note fotsiny)
+## root folder
+```bash
+npm init -y
+```
