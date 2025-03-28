@@ -128,7 +128,7 @@ npm init -y
 ```bash
 cd backend
 npm init -y
-npm install express cors dotenv
+npm install express cors dotenv msnodesqlv8 
 cd ..
 ```
 
