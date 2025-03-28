@@ -129,9 +129,17 @@ npm init -y
 cd backend
 npm init -y
 npm install express cors dotenv
+cd ..
 ```
 
 Raha te handefa an le server dia:
 ```bash
 npm start
+```
+
+## fronted folder
+```bash
+npx create-vite frontend --template react
+cd frontend
+npm install
 ```
