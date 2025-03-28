@@ -1,8 +1,7 @@
 const sql = require('msnodesqlv8');
-const path = require('path');
+const dsn = require('./dsn');
 
-let DBQ = path.join(__dirname, '../../database/rally-2007.accdb');
-const connectionString = `Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=${DBQ};`;
+const connectionString = dsn.getDsn();
 
 const getVoitures = (callback) => {
     const query = 'SELECT * FROM voiture';
