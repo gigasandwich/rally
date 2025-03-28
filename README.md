@@ -108,15 +108,14 @@
         - `reservoir = reservoir - consommation_essence * pourcentage d'acceleration * t`
 
 ### Derniere priorites
-` Bocdom - Yvan - Japon `
-- replay(event):
+- replay(event): ` Bocdom - Yvan - Japon `
     - Misafidy t1 a t2 (fenetre hafa)
-` Poyz `
-- cheadCode(fonctionalite) RESET
-` Steeve `
-- CRUD voiture
-` Yvan `
-- Accelerateur - Frein
+
+- cheadCode(fonctionalite) RESET ` Poyz `
+
+- CRUD voiture ` Steeve `
+
+- Accelerateur - Frein ` Yvan `
 
 # Project structure (note fotsiny)
 ## root folder
