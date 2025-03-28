@@ -142,4 +142,5 @@ npm start
 npx create-vite frontend --template react
 cd frontend
 npm install
+npm install --save-dev vite
 ```
