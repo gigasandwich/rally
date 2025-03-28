@@ -1,5 +1,5 @@
 const sql = require('msnodesqlv8');
-const dsn = require('./dsn');
+const dsn = require('../utils/dsn');
 
 const connectionString = dsn.getDsn();
 
