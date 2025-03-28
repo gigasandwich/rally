@@ -1,12 +1,10 @@
 const express = require('express');
-const cors = require('cors');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Miparse automatique ny requests JSON
 
 app.get('/', (req, res) => {
     res.send('Hello from backend');
 });
 
-module.exports = app;
+module.exports = app;  // Exportena ilay app @zay afaka ampiasaina @ partie hafa an le application web
