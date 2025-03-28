@@ -94,7 +94,7 @@
 
 `Bocdom - Yvan`
 - distanceParcourue(t) (a afficher)
-    - sommeDistanceParcourue avant temps t: x= 1/2(gamma)*t^2 + vo*t + xo
+    - `sommeDistanceParcourue avant temps t: x= 1/2(gamma)*t^2 + vo*t + xo`
 
 #### Essence (L/s)
 `Poyz - Steeve`
@@ -105,7 +105,7 @@
     - SINON:
         - PlusDEssenceException("Veuillez faire le plein")
     - REHEFA RESPECTE NY CONDITION
-        - reservoir = reservoir - consommation_essence * pourcentage d'acceleration * t
+        - `reservoir = reservoir - consommation_essence * pourcentage d'acceleration * t`
 
 ### Derniere priorites
 ` Bocdom - Yvan - Japon `
