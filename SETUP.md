@@ -7,14 +7,14 @@
 - Alefa ny service an le backend @ port 1234:
 ```bash
 cd backend
-npm run
+npm start
 ```
 - Manokatra terminal vaovao 
 
 - Alefa ny service an le frontend @ port 4321:
 ```bash
 cd frontend
-npm run
+npm start
 ```
 
 # Installation (note fotsiny, tsy voatery mila arahana)
