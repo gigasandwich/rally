@@ -1,7 +1,11 @@
 const path = require('path');
+const config = require('./config');
 
-exports.getDsn = function() {
-    let DBQ = path.join(__dirname, '../../database/rally-2007.accdb');
-    const connection_string = `Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=${DBQ};`;
-    return connection_string;
+let access_db_path = path.join(__dirname, config.access.db_path);
+let sqlite_db_path = path.join(__dirname, config.sqlite.db_path);
+
+module.exports = {
+    mysql: `mysql://${config.mysql.user}:${config.mysql.password}@${config.mysql.host}/${config.mysql.database}`,
+    sqlite: `${sqlite_db_path}`,
+    access: `Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=${access_db_path};`,
 };

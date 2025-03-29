@@ -1,6 +1,9 @@
 const voiture_model = require('../models/voiture_model');
 
-// Manao genre ana REST api 
+/**
+ * Manao genre ana REST api
+ * Afaka ampin lisany zavatra hafa a part an le CRUD basique efa ato (hoe donnees ilain'ny front ohatra) FA MAHAKASIKA NY VOITURE FOTSINY
+ */
 
 const voiture_controller = {
     async getAll(req, res) {
