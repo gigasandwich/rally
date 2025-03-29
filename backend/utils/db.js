@@ -1,18 +1,41 @@
 const sql = require('msnodesqlv8');
 const dsn = require('./dsn');
 
-const connection_string = dsn.getDsn();
+const dsn = dsn.mysql || dsn.access;
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
-function _queryDatabase_(query, parameters = []) {
+function _queryDatabase_(dsn = dsn, query, parameters = []) {
     return new Promise((resolve, reject) => {
-        sql.query(connection_string, query, parameters, (err, rows) => {
-            if (err) {
-                return reject(err);
-            }
-            resolve(rows);
-        });
+        let connection;
+
+        if (dsn.startsWith('mysql://')) {
+            connection = mysql.createConnection(dsn);
+            connection.execute(query, parameters, (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results);
+                connection.end();
+            });
+        }
+        else if (dsn.startsWith('Driver={Microsoft Access Driver')) {
+            odbc.connect(dsn, (err, conn) => {
+                if (err) {
+                    return reject(err);
+                }
+                conn.query(query, parameters, (err, rows) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve(rows);
+                    conn.close();
+                });
+            });
+        }
+        else {
+            return reject(new Error('DSN non supporte'));
+        }
     });
 }
 
