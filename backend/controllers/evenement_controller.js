@@ -31,8 +31,8 @@ const evenement_controller = {
 
     async create(req, res) {
         try {
-            const { nom, acceleration_max, deceleration_max, reservoir, consommation_essence, vitesse_max } = req.body;
-            if (!nom || !acceleration_max || !deceleration_max || !reservoir || !consommation_essence || !vitesse_max) {
+          const { id_voiture, vitesse_initiale, gamma, temps_debut } = req.body;
+            if (!id_voiture || !vitesse_initiale || !gamma || !temps_debut) {
                 return res.status(400).json({ error: 'Champs requis manquants' });
             }
 

@@ -4,12 +4,12 @@ const evenement_controller = require('../controllers/evenement_controller');
 
 router.get('/evenements', evenement_controller.getAll);
 
-router.get('/evenements/:id', voiture_controller.getById);
+router.get('/evenements/:id', evenement_controller.getById);
 
-router.post('/evenements', voiture_controller.create);
+router.post('/evenements', evenement_controller.create);
 
-router.get('/evenements/update/:id', voiture_controller.update);
+router.get('/evenements/update/:id', evenement_controller.update);
 
-router.delete('/evenements/delete/:id', voiture_controller.delete);
+router.delete('/evenements/delete/:id', evenement_controller.delete);
 
 module.exports = router;
