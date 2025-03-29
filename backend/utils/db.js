@@ -5,8 +5,6 @@ const used_dsn = dsn.sqlite || dsn.mysql || dsn.access; // Ataovy voalohany izay
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
 function _queryDatabase_(query, parameters = [], dsn = used_dsn) { // Par defaut, ilay variable used_dsn no miasa
-    console.log(dsn);
-    
     return new Promise((resolve, reject) => {
         let connection;
 
