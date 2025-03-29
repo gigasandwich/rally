@@ -9,12 +9,12 @@ const app = express();
 app.use(cors({ origin: 'http://localhost:4321' })); // Manala resaka probleme de header
 app.use(express.json()); // Parsen le app automatique ho json ny json request tonga avy any (tsy mila miparse manuel)
 
-const voitureRoutes = require('./routes/voiture_routes');
-const evenementRoutes = require('./routes/evenement_routes');
+const voiture_routes = require('./routes/voiture_routes');
+const evenement_routes = require('./routes/evenement_routes');
 
 // Routes
-app.use('/api', voitureRoutes);
-app.use('/api', evenementRoutes);
+app.use('/api', voiture_routes);
+app.use('/api', evenement_routes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
