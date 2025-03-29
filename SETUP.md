@@ -1,6 +1,8 @@
 # How to run
-- Driver an le access ihany no mila telechargena en dehors an'i node JS (ankotran zay efa dispo anatin le node_modules daholo) 
+- Driver an le access ihany dia mila telechargena en dehors an'i node JS (ankotran zay efa dispo anatin le node_modules daholo) 
     - [driver](https://www.microsoft.com/en-us/download/details.aspx?id=54920)
+    - [sqlite](https://www.sqlite.org/download.html) (ilay lien sqlite-tools-win-x64-3490100.zip (6.12 MiB)	)
+        - avy eo atao anaty _PATH_ ilay dossier misy an le fichier.exe
 
 - Mandefa terminal, `tout sauf powershell` (git bash, cmd, ...)
 
