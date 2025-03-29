@@ -1,15 +1,14 @@
 const dsn = require('./dsn');
 
-const used_dsn = dsn.mysql || dsn.access;
+const used_dsn = dsn.sqlite || dsn.mysql || dsn.access; // Ataovy voalohany izay tian lisany ampiasaina
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
-function _queryDatabase_(query, parameters = [], dsn = used_dsn) {
-    
+function _queryDatabase_(query, parameters = [], dsn = used_dsn) { // Par defaut, ilay variable used_dsn no miasa
     return new Promise((resolve, reject) => {
         let connection;
 
-        if (dsn.startsWith('mysql://')) {
+        if (dsn.startsWith('mysql://')) { // mysql
             const mysql = require('mysql2');
             connection = mysql.createConnection(dsn);
             connection.execute(query, parameters, (err, results) => {
@@ -19,8 +18,7 @@ function _queryDatabase_(query, parameters = [], dsn = used_dsn) {
                 resolve(results);
                 connection.end();
             });
-        }
-        else if (dsn.startsWith('Driver={Microsoft Access Driver')) {
+        } else if (dsn.startsWith('Driver={Microsoft Access Driver')) { // access
             const sql = require('msnodesqlv8');
             sql.query(dsn, query, parameters, (err, rows) => {
                 if (err) {
@@ -28,10 +26,20 @@ function _queryDatabase_(query, parameters = [], dsn = used_dsn) {
                 }
                 resolve(rows);
             });
-        }
-        else {
-            return reject(new Error('Unsupported DSN'));
-        }
+        } else if (dsn.endsWith('.sqlite') || dsn.endsWith('.db')) { // sqlite
+            try {
+                const sqlite3 = require('better-sqlite3');
+                connection = new sqlite3(dsn);
+                const stmt = connection.prepare(query);
+                const rows = stmt.all(...parameters);
+                resolve(rows);
+                connection.close();
+            } catch (error) {
+                reject(error);
+            }
+        } else {
+            return reject(new Error('DSN non supporte'));
+        } 
     });
 }
 
