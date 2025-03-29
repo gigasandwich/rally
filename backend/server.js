@@ -16,7 +16,7 @@ const evenement_routes = require('./routes/evenement_routes');
 app.use('/api', voiture_routes);
 app.use('/api', evenement_routes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; // Alaina ao amle fichier .env ilay variable
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
