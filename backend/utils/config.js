@@ -8,7 +8,11 @@ module.exports = {
         database: process.env.MYSQL_DATABASE,
     },
 
+    sqlite: {
+        db_path: process.env.SQLITE_DATABASE,
+    },
+
     access: {
         db_path: process.env.ACCESS_DB_PATH,
-    },
+    }
 };
