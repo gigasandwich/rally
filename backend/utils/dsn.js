@@ -1,7 +1,7 @@
 const path = require('path');
 const config = require('./config');
 
-console.log(config);
+// console.log(config);
 let access_db_path = path.join(__dirname, config.access.db_path);
 
 module.exports = {

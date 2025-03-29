@@ -4,11 +4,13 @@ const used_dsn = dsn.mysql || dsn.access;
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
-function _queryDatabase_(dsn = used_dsn, query, parameters = []) {
+function _queryDatabase_(query, parameters = [], dsn = used_dsn) {
+    
     return new Promise((resolve, reject) => {
         let connection;
 
         if (dsn.startsWith('mysql://')) {
+            const mysql = require('mysql2');
             connection = mysql.createConnection(dsn);
             connection.execute(query, parameters, (err, results) => {
                 if (err) {
