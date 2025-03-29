@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS rally;
+CREATE DATABASE rally;
+use rally;
+
 CREATE TABLE Voiture (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100),

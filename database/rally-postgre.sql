@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS rally;
+CREATE DATABASE rally;
+\c rally;
+
 CREATE TABLE Voiture (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100),
