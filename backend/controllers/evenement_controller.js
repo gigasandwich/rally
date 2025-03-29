@@ -37,7 +37,7 @@ const evenement_controller = {
             }
 
             await evenement_model.create(req.body);
-            res.status(201).json({ message: 'evenement cree avec succes' }); // 201: ressource vaovao cree
+            res.status(201).json({ message: 'Evenement cree avec succes' }); // 201: ressource vaovao cree
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: `Internal Server Error: ${error}` });
@@ -52,10 +52,10 @@ const evenement_controller = {
             const result = await evenement_model.update(updateData, `id = ${id}`);
 
             if (result.rowsAffected === 0) {
-                return res.status(404).json({ error: 'evenement non trouve or ou aucun changement' });
+                return res.status(404).json({ error: 'Evenement non trouve or ou aucun changement' });
             }
 
-            res.json({ message: 'evenement mis a jour avec succes' });
+            res.json({ message: 'Evenement mis a jour avec succes' });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: `Erreur lors de la mis a jour de la evenement: ${error}` });
@@ -69,10 +69,10 @@ const evenement_controller = {
             const result = await evenement_model.delete(`id = ${id}`);
 
             if (result.rowsAffected === 0) {
-                return res.status(404).json({ error: 'evenement non trouve' });
+                return res.status(404).json({ error: 'Evenement non trouve' });
             }
 
-            res.json({ message: 'evenement suprime avec succes' });
+            res.json({ message: 'Evenement suprime avec succes' });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: `Erreur lors de la suppression de la evenement: ${error}` });
