@@ -1,4 +1,4 @@
-const voiture_model = require('../models/voitureModel');
+const voiture_model = require('../models/voiture_model');
 
 // Manao genre ana REST api 
 
@@ -8,8 +8,8 @@ const voiture_controller = {
             const voitures = await voiture_model.getAll();
             res.json(voitures);
         } catch (error) {
-            console.error('Error fetching voitures:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error(error);
+            res.status(500).json({ error: `Erreur lors de la recuperation des voitures a la base: ${error}` });
         }
     },
 
@@ -19,13 +19,13 @@ const voiture_controller = {
             const voiture = await voiture_model.getById(id);
 
             if (!voiture.length) {
-                return res.status(404).json({ error: 'Voiture not found' });
+                return res.status(404).json({ error: 'Voiture non trouvee' });
             }
 
             res.json(voiture[0]);
         } catch (error) {
-            console.error('Error fetching voiture:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error(error);
+            res.status(500).json({ error: `Erreur lors de la recuperation de la voiture: ${error}` });
         }
     },
 
@@ -33,14 +33,14 @@ const voiture_controller = {
         try {
             const { nom, acceleration_max, deceleration_max, reservoir, consommation_essence, vitesse_max } = req.body;
             if (!nom || !acceleration_max || !deceleration_max || !reservoir || !consommation_essence || !vitesse_max) {
-                return res.status(400).json({ error: 'Missing required fields' });
+                return res.status(400).json({ error: 'Champs requis manquants' });
             }
 
             await voiture_model.create(req.body);
-            res.status(201).json({ message: 'Voiture created successfully' });
+            res.status(201).json({ message: 'Voiture creee avec succes' }); // 201: ressource vaovao cree
         } catch (error) {
-            console.error('Error creating voiture:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error(error);
+            res.status(500).json({ error: `Internal Server Error: ${error}` });
         }
     },
 
@@ -52,13 +52,13 @@ const voiture_controller = {
             const result = await voiture_model.update(updateData, `id = ${id}`);
 
             if (result.rowsAffected === 0) {
-                return res.status(404).json({ error: 'Voiture not found or no change applied' });
+                return res.status(404).json({ error: 'Voiture non trouvee or ou aucun changement' });
             }
 
-            res.json({ message: 'Voiture updated successfully' });
+            res.json({ message: 'Voiture mise a jour avec succes' });
         } catch (error) {
-            console.error('Error updating voiture:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error(error);
+            res.status(500).json({ error: `Erreur lors de la mise a jour de la voiture: ${error}` });
         }
     },
 
@@ -69,13 +69,13 @@ const voiture_controller = {
             const result = await voiture_model.delete(`id = ${id}`);
 
             if (result.rowsAffected === 0) {
-                return res.status(404).json({ error: 'Voiture not found' });
+                return res.status(404).json({ error: 'Voiture non trouvee' });
             }
 
-            res.json({ message: 'Voiture deleted successfully' });
+            res.json({ message: 'Voiture suprimee avec succes' });
         } catch (error) {
-            console.error('Error deleting voiture:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error(error);
+            res.status(500).json({ error: `Erreur lors de la suppression de la voiture: ${error}` });
         }
     }
 };
