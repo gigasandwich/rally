@@ -1,11 +1,10 @@
-const sql = require('msnodesqlv8');
 const dsn = require('./dsn');
 
-const dsn = dsn.mysql || dsn.access;
+const used_dsn = dsn.mysql || dsn.access;
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
-function _queryDatabase_(dsn = dsn, query, parameters = []) {
+function _queryDatabase_(dsn = used_dsn, query, parameters = []) {
     return new Promise((resolve, reject) => {
         let connection;
 
@@ -20,21 +19,16 @@ function _queryDatabase_(dsn = dsn, query, parameters = []) {
             });
         }
         else if (dsn.startsWith('Driver={Microsoft Access Driver')) {
-            odbc.connect(dsn, (err, conn) => {
+            const sql = require('msnodesqlv8');
+            sql.query(dsn, query, parameters, (err, rows) => {
                 if (err) {
                     return reject(err);
                 }
-                conn.query(query, parameters, (err, rows) => {
-                    if (err) {
-                        return reject(err);
-                    }
-                    resolve(rows);
-                    conn.close();
-                });
+                resolve(rows);
             });
         }
         else {
-            return reject(new Error('DSN non supporte'));
+            return reject(new Error('Unsupported DSN'));
         }
     });
 }
@@ -71,7 +65,7 @@ async function _create_(nom_table, donnee) { // map ilay donnee eto
 async function _readAll_(nom_table, projections = ['*']) {
     if (!nom_table)
         throw new MissingParameterError("Le nom de la table est requis pour la lecture des donnees.");
-    
+
     const projection = projections.join(', ');
     const query = `SELECT ${projection} FROM ${nom_table}`;
     return _queryDatabase_(query);
@@ -83,7 +77,7 @@ async function _read_(nom_table, id, projections = ['*']) {
 
     if (id === undefined || id === null)
         throw new MissingParameterError("L'ID est requis pour la lecture d'un enregistrement specifique.");
-    
+
     const projection = projections.join(', ');
     const query = `SELECT ${projection} FROM ${nom_table} WHERE id = ?`;
     return _queryDatabase_(query, [id]);
@@ -112,7 +106,7 @@ async function _delete_(nom_table, conditions) {
 
     if (!conditions)
         throw new MissingParameterError("Les conditions sont requises pour la suppression.");
-    
+
     const query = `DELETE FROM ${nom_table} WHERE ${conditions}`;
     return _queryDatabase_(query);
 }

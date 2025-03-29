@@ -1,3 +1,5 @@
+require('dotenv').config({ path: 'utils/.env' });
+
 module.exports = {
     mysql: {
         host: process.env.MYSQL_HOST,
