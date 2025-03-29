@@ -4,14 +4,14 @@ const used_dsn = dsn.sqlite || dsn.mysql || dsn.access; // Ataovy voalohany izay
 
 // Nampiko _underscore_ satria misy functions efa miexiste amreo raha tsisy
 
-function _queryDatabase_(query, parameters = [], dsn = used_dsn) { // Par defaut, ilay variable used_dsn no miasa
+function _queryDatabase_(query, params = [], dsn = used_dsn) { // Par defaut, ilay variable used_dsn no miasa
     return new Promise((resolve, reject) => {
         let connection;
 
         if (dsn.startsWith('mysql://')) { // mysql
             const mysql = require('mysql2');
             connection = mysql.createConnection(dsn);
-            connection.execute(query, parameters, (err, results) => {
+            connection.execute(query, params, (err, results) => {
                 if (err) {
                     return reject(err);
                 }
@@ -20,7 +20,7 @@ function _queryDatabase_(query, parameters = [], dsn = used_dsn) { // Par defaut
             });
         } else if (dsn.startsWith('Driver={Microsoft Access Driver')) { // access
             const sql = require('msnodesqlv8');
-            sql.query(dsn, query, parameters, (err, rows) => {
+            sql.query(dsn, query, params, (err, rows) => {
                 if (err) {
                     return reject(err);
                 }
@@ -31,7 +31,7 @@ function _queryDatabase_(query, parameters = [], dsn = used_dsn) { // Par defaut
                 const sqlite3 = require('better-sqlite3');
                 connection = new sqlite3(dsn);
                 const stmt = connection.prepare(query);
-                const rows = stmt.all(...parameters);
+                const rows = stmt.all(...params);
                 resolve(rows);
                 connection.close();
             } catch (error) {
@@ -57,16 +57,16 @@ class InvalidDataError extends Error {
     }
 }
 
-async function _create_(nom_table, donnee) { // map ilay donnee eto
+async function _create_(nom_table, donnees) { // map ilay donnees eto
     if (!nom_table)
         throw new MissingParameterError("Le nom de la table est requis pour l'insertion.");
 
-    if (typeof donnee !== 'object' || Object.keys(donnee).length === 0)
-        throw new InvaliddonneeError("L'objet de donnees doit etre fourni et ne peut pas etre vide pour l'insertion.");
+    if (typeof donnees !== 'object' || Object.keys(donnees).length === 0)
+        throw new InvalidDataError("L'objet de donnees doit etre fourni et ne peut pas etre vide pour l'insertion.");
 
-    const colonnes = Object.keys(donnee).join(', ');
-    const placeholders = Object.keys(donnee).map(() => '?').join(', ');
-    const values = Object.values(donnee);
+    const colonnes = Object.keys(donnees).join(', ');
+    const placeholders = Object.keys(donnees).map(() => '?').join(', ');
+    const values = Object.values(donnees);
 
     const query = `INSERT INTO ${nom_table} (${colonnes}) VALUES (${placeholders})`;
     return _queryDatabase_(query, values);
@@ -93,18 +93,18 @@ async function _read_(nom_table, id, projections = ['*']) {
     return _queryDatabase_(query, [id]);
 }
 
-async function _update_(nom_table, data, conditions) {
+async function _update_(nom_table, donnees, conditions) {
     if (!nom_table)
         throw new MissingParameterError("Le nom de la table est requis pour la mise a jour des donnees.");
 
-    if (typeof data !== 'object' || Object.keys(data).length === 0)
+    if (typeof donnees !== 'object' || Object.keys(donnees).length === 0)
         throw new InvalidDataError("L'objet de donnees doit etre fourni et ne peut pas etre vide pour la mise a jour.");
 
     if (!conditions)
         throw new MissingParameterError("Les conditions sont requises pour la mise a jour des donnees.");
 
-    const partie_set = Object.keys(data).map(key => `${key} = ?`).join(', ');
-    const values = Object.values(data);
+    const partie_set = Object.keys(donnees).map(key => `${key} = ?`).join(', ');
+    const values = Object.values(donnees);
 
     const query = `UPDATE ${nom_table} SET ${partie_set} WHERE ${conditions}`;
     return _queryDatabase_(query, values);
